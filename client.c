@@ -1,54 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 19:20:30 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/16 12:58:21 by paprzyby         ###   ########.fr       */
+/*   Created: 2024/05/16 12:51:01 by paprzyby          #+#    #+#             */
+/*   Updated: 2024/05/16 12:59:25 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
 
-void	ft_putnbr(int n)
+void	kill_function(char *pid, char *sig)
 {
-	char	c;
 
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	c = (n % 10) + '0';
-	write(1, &c, 1);
 }
 
-void	ft_bzero(void *ptr, size_t size)
+int	main(int argc, char **argv)
 {
-	size_t			i;
-	unsigned char	*p;
-
-	p = (unsigned char *)ptr;
-	i = 0;
-	while (i < size)
+	if (argc > 3)
 	{
-		p[i] = 0;
-		i++;
+		write(1, "Error: ", 7);
+		write(1, "Too many parameters passed\n", 27);
+		return (0);
 	}
-}
-
-void	set_signal_action(void)
-{
-	struct sigaction	act;
-
-	ft_bzero(&act, sizeof(act));
-}
-
-int	main(void)
-{
-	ft_putnbr(getpid());
-	write(1, "\n", 1);
-	set_signal_action();
-	while (1)
-		pause();
+	else if (argc < 3)
+	{
+		write(1, "Error: ", 7);
+		write(1, "Too few parameters passed\n", 26);
+		return (0);
+	}
+	else
+		kill_function(argv[1], argv[2]);
+	return (1);
 }
