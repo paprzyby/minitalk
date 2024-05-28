@@ -6,14 +6,14 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:51:01 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/16 12:59:25 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:35:06 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
 
-void	kill_function(char *pid, char *sig)
+void	kill_function(char *pid, char *str)
 {
 
 }
