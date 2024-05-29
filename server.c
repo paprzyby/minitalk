@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:20:30 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/28 14:29:49 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:06:44 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ void	signal_handler(int signal)
 
 int	main()
 {
-	struct sigaction	act;
+	struct sigaction	sa;
 
 	ft_putnbr(getpid());
 	write(1, "\n", 1);
-	ft_bzero(&act, sizeof(act));
-	act.sa_handler = signal_handler;
+	ft_bzero(&sa, sizeof(sa));
+	sa.sa_handler = signal_handler;
+	sigaction(SIGUSR1, &sa, NULL);
 	while (1)
 		pause();
 	return (0);
