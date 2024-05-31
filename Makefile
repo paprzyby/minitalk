@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 19:11:05 by paprzyby          #+#    #+#              #
-#    Updated: 2024/05/31 11:58:49 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/05/31 13:14:34 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME			=
 
 SOURCE			=	client.c server.c
 
-BONUS_SOURCE	=	client_bonus.c server_bonus.c
+SOURCE_BONUS	=	client_bonus.c server_bonus.c
 
 OBJECTS			=	$(SOURCE:.c=.o)
 
-BONUS_OBJECTS	=	$(BONUS_SOURCE:.c=.o)
+OBJECTS_BONUS	=	$(SOURCE_BONUS:.c=.o)
 
 CC				=	cc
 
@@ -30,11 +30,11 @@ CLIENT			=	client
 
 SERVER			=	server
 
-BONUS_CLIENT	=	bonus_client
+CLIENT_BONUS	=	client_bonus
 
-BONUS_SERVER	=	bonus_server
+SERVER_BONUS	=	server_bonus
 
-all:				$(CLIENT) $(SERVER) $(BONUS_CLIENT) $(BONUS_SERVER)
+all:				$(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
 
 $(NAME):			all
 
@@ -44,11 +44,11 @@ $(CLIENT):			client.o
 $(SERVER):			server.o
 					$(CC) $(FLAGS) -o $(SERVER) server.o
 
-$(BONUS_CLIENT):	bonus_client.o
-					$(CC) $(FLAGS) -o $(CLIENT) bonus_client.o
+$(CLIENT_BONUS):	client_bonus.o
+					$(CC) $(FLAGS) -o $(CLIENT_BONUS) client_bonus.o
 
-$(BONUS_SERVER):	bonus_server.o
-					$(CC) $(FLAGS) -o $(SERVER) bonus_server.o
+$(SERVER_BONUS):	server_bonus.o
+					$(CC) $(FLAGS) -o $(SERVER_BONUS) server_bonus.o
 
 %.o:				%.c
 					$(CC) $(FLAGS) -c $< -o $@
@@ -57,7 +57,9 @@ clean:
 					$(RM) $(OBJECTS)
 
 fclean:				clean
-					$(RM) $(SERVER) $(CLIENT) $(BONUS_CLIENT) $(BONUS_SERVER) $(BONUS_OBJECTS)
+					$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+
+bonus:				$(CLIENT_BONUS) $(SERVER_BONUS)
 
 re:					fclean all
 
