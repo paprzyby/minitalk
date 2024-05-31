@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:51:01 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 09:24:13 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:31:45 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	ft_strlen(char *str)
 
 void	kill_function(char *pid, char *str)
 {
-	int	bit;
-	int	len;
-	int	i;
-	int	result;
+	int				bit;
+	unsigned int	len;
+	unsigned int	i;
+	int				result;
 
 	bit = 0;
 	len = ft_strlen(str);
