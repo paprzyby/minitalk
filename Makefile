@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 19:11:05 by paprzyby          #+#    #+#              #
-#    Updated: 2024/05/31 13:14:34 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/05/31 13:59:33 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,14 +50,14 @@ $(CLIENT_BONUS):	client_bonus.o
 $(SERVER_BONUS):	server_bonus.o
 					$(CC) $(FLAGS) -o $(SERVER_BONUS) server_bonus.o
 
-%.o:				%.c
+%.o:				%.c minitalk.h minitalk_bonus.h
 					$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-					$(RM) $(OBJECTS)
+					$(RM) $(OBJECTS) $(OBJECTS_BONUS)
 
 fclean:				clean
-					$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+					$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS) $(OBJECTS) $(OBJECTS_BONUS)
 
 bonus:				$(CLIENT_BONUS) $(SERVER_BONUS)
 

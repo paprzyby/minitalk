@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 13:16:13 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 13:23:24 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:55:38 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+void	signal_received(int signal)
+{
+	if (signal == SIGUSR1)
+		write(1, "Signal received\n", 16);
+}
+
 void	kill_function(char *pid, char *str)
 {
 	int				bit;
@@ -63,17 +69,11 @@ void	kill_function(char *pid, char *str)
 	}
 }
 
-void	signal_handler(int signal)
-{
-	if (signal == SIGUSR1)
-		write(1, "The signal has been successfully received\n", 42);
-}
-
 int	main(int argc, char **argv)
 {
 	struct sigaction	sa;
 
-	sa.sa_handler = &signal_handler;
+	sa.sa_handler = &signal_received;
 	sigaction(SIGUSR1, &sa, NULL);
 	if (argc > 3)
 	{

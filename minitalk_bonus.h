@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 11:45:27 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 11:45:53 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:12:40 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_bzero(void *ptr, size_t size);
 int		ft_strlen(char *str);
 int		ft_atoi(char *str);
 void	kill_function(char *pid, char *str);
-void	signal_handler(int signal);
+void	signal_handler(int signal, siginfo_t *info, void *x);
+void	signal_received(int signal);
 
 #endif

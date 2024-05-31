@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 13:18:59 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 13:19:16 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:12:22 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	ft_bzero(void *ptr, size_t size)
 	}
 }
 
-void	signal_handler(int signal)
+void	signal_handler(int signal, siginfo_t *info, void *x)
 {
 	static int	bit;
 	static int	c;
 
+	(void)x;
 	if (signal == SIGUSR1)
 	{
 		c = c | (0 << bit);
@@ -54,7 +55,10 @@ void	signal_handler(int signal)
 	}
 	if (bit == 8)
 	{
-		write (1, &c, 1);
+		if (c != '\0')
+			write (1, &c, 1);
+		else
+			kill(info->si_pid, SIGUSR1);
 		bit = 0;
 		c = 0;
 	}
@@ -67,7 +71,8 @@ int	main(void)
 	ft_putnbr(getpid());
 	write(1, "\n", 1);
 	ft_bzero(&sa, sizeof(sa));
-	sa.sa_handler = &signal_handler;
+	sa.sa_sigaction = &signal_handler;
+	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
