@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:06:34 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/28 12:39:20 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:27:11 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 
 void	ft_putnbr(int n);
 void	ft_bzero(void *ptr, size_t size);
+int		ft_strlen(char *str);
+int		ft_atoi(char *str);
 
 #endif

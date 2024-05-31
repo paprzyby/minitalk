@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:20:30 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 09:11:03 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:01:55 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,28 @@ void	ft_bzero(void *ptr, size_t size)
 
 void	signal_handler(int signal)
 {
-	
+	static int	bit;
+	static int	c;
+
+	if (signal == SIGUSR1)
+	{
+		c = c | (0 << bit);
+		bit++;
+	}
+	else if (signal == SIGUSR2)
+	{
+		c = c | (1 << bit);
+		bit++;
+	}
+	if (bit == 8)
+	{
+		write (1, &c, 1);
+		bit = 0;
+		c = 0;
+	}
 }
 
-int	main()
+int	main(void)
 {
 	struct sigaction	sa;
 
@@ -51,6 +69,7 @@ int	main()
 	ft_bzero(&sa, sizeof(sa));
 	sa.sa_handler = &signal_handler;
 	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
 	return (0);

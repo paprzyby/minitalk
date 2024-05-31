@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 19:11:05 by paprzyby          #+#    #+#              #
-#    Updated: 2024/05/31 09:03:41 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/05/31 11:03:31 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,7 @@ $(CLIENT):		client.o
 				$(CC) $(FLAGS) -o $(CLIENT) client.o
 
 %.o:			%.c
-				$(CC) $(FLAGS) -c server.c -o server.o
-				$(CC) $(FLAGS) -c client.c -o client.o
+				$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 				$(RM) $(OBJECTS)
@@ -49,3 +48,7 @@ fclean:			clean
 re:				fclean all
 
 .PHONY:			all clean fclean re
+
+#NAME is not explicitly specified as a target.
+#It seems to be intended as a variable to potentially hold a name,
+#but it's not used in any of the rules or targets
