@@ -6,48 +6,62 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 19:11:05 by paprzyby          #+#    #+#              #
-#    Updated: 2024/05/31 11:03:31 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/05/31 11:58:49 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=
+NAME			=
 
-SOURCE		=	client.c server.c
+SOURCE			=	client.c server.c
 
-OBJECTS		=	$(SOURCE:.c=.o)
+BONUS_SOURCE	=	client_bonus.c server_bonus.c
 
-CC			=	cc
+OBJECTS			=	$(SOURCE:.c=.o)
 
-RM			=	rm -f
+BONUS_OBJECTS	=	$(BONUS_SOURCE:.c=.o)
 
-FLAGS		=	-Wall -Wextra -Werror
+CC				=	cc
 
-CLIENT		=	client
+RM				=	rm -f
 
-SERVER		=	server
+FLAGS			=	-Wall -Wextra -Werror
 
-all:			$(CLIENT) $(SERVER)
+CLIENT			=	client
 
-$(NAME):		all
+SERVER			=	server
 
-$(SERVER):		server.o
-				$(CC) $(FLAGS) -o $(SERVER) server.o
+BONUS_CLIENT	=	bonus_client
 
-$(CLIENT):		client.o
-				$(CC) $(FLAGS) -o $(CLIENT) client.o
+BONUS_SERVER	=	bonus_server
 
-%.o:			%.c
-				$(CC) $(FLAGS) -c $< -o $@
+all:				$(CLIENT) $(SERVER) $(BONUS_CLIENT) $(BONUS_SERVER)
+
+$(NAME):			all
+
+$(CLIENT):			client.o
+					$(CC) $(FLAGS) -o $(CLIENT) client.o
+
+$(SERVER):			server.o
+					$(CC) $(FLAGS) -o $(SERVER) server.o
+
+$(BONUS_CLIENT):	bonus_client.o
+					$(CC) $(FLAGS) -o $(CLIENT) bonus_client.o
+
+$(BONUS_SERVER):	bonus_server.o
+					$(CC) $(FLAGS) -o $(SERVER) bonus_server.o
+
+%.o:				%.c
+					$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-				$(RM) $(OBJECTS)
+					$(RM) $(OBJECTS)
 
-fclean:			clean
-				$(RM) $(SERVER) $(CLIENT)
+fclean:				clean
+					$(RM) $(SERVER) $(CLIENT) $(BONUS_CLIENT) $(BONUS_SERVER) $(BONUS_OBJECTS)
 
-re:				fclean all
+re:					fclean all
 
-.PHONY:			all clean fclean re
+.PHONY:				all clean fclean re bonus
 
 #NAME is not explicitly specified as a target.
 #It seems to be intended as a variable to potentially hold a name,
