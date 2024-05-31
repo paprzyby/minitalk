@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:20:30 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/29 16:23:51 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:11:03 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	ft_bzero(void *ptr, size_t size)
 
 void	signal_handler(int signal)
 {
-	signal = 0;
-	write(1, "Signal\n", 7);
+	
 }
 
 int	main()

@@ -6,14 +6,14 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:51:01 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/29 16:23:49 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:24:13 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int	number;
 
@@ -26,29 +26,58 @@ int	ft_atoi(const char *str)
 	return (number);
 }
 
-void	kill_function(char *pid)
+int	ft_strlen(char *str)
 {
-	int	id;
+	unsigned int	i;
 
-	id = ft_atoi(pid);
-	kill(id, SIGUSR1);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	kill_function(char *pid, char *str)
+{
+	int	bit;
+	int	len;
+	int	i;
+	int	result;
+
+	bit = 0;
+	len = ft_strlen(str);
+	i = 0;
+	result = 0;
+	while (i < len)
+	{
+		bit = 0;
+		while (bit < 8)
+		{
+			result = (str[i] & (1 << bit));
+			if (result == 1)
+				kill(ft_atoi(pid), SIGUSR1);
+			else
+				kill(ft_atoi(pid), SIGUSR2);
+			bit++;
+		}
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc > 3)
 	{
-		write(1, "Error: ", 7);
+		write(1, "Error:\n", 7);
 		write(1, "Too many parameters passed\n", 27);
 		return (0);
 	}
-	//else if (argc < 3)
-	//{
-	//	write(1, "Error: ", 7);
-	//	write(1, "Too few parameters passed\n", 26);
-	//	return (0);
-	//}
+	else if (argc < 3)
+	{
+		write(1, "Error:\n", 7);
+		write(1, "Too few parameters passed\n", 26);
+		return (0);
+	}
 	else
-		kill_function(argv[1]);
+		kill_function(argv[1], argv[2]);
 	return (1);
 }
