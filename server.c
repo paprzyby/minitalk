@@ -6,12 +6,11 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:20:30 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 11:18:35 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:02:44 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <signal.h>
+#include "minitalk.h"
 
 void	ft_putnbr(int n)
 {
