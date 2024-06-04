@@ -6,12 +6,11 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 13:16:13 by paprzyby          #+#    #+#             */
-/*   Updated: 2024/05/31 13:55:38 by paprzyby         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:15:40 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <signal.h>
+#include "minitalk_bonus.h"
 
 int	ft_atoi(char *str)
 {

@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 19:11:05 by paprzyby          #+#    #+#              #
-#    Updated: 2024/05/31 13:59:33 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/05/31 14:57:27 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CLIENT_BONUS	=	client_bonus
 
 SERVER_BONUS	=	server_bonus
 
-all:				$(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+all:				$(CLIENT) $(SERVER)
 
 $(NAME):			all
 
