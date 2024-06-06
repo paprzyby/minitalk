@@ -6,11 +6,11 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 19:11:05 by paprzyby          #+#    #+#              #
-#    Updated: 2024/05/31 14:57:27 by paprzyby         ###   ########.fr        #
+#    Updated: 2024/06/06 14:14:55 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=
+NAME			=	minitalk
 
 SOURCE			=	client.c server.c
 
@@ -57,14 +57,10 @@ clean:
 					$(RM) $(OBJECTS) $(OBJECTS_BONUS)
 
 fclean:				clean
-					$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS) $(OBJECTS) $(OBJECTS_BONUS)
+					$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
 
 bonus:				$(CLIENT_BONUS) $(SERVER_BONUS)
 
 re:					fclean all
 
 .PHONY:				all clean fclean re bonus
-
-#NAME is not explicitly specified as a target.
-#It seems to be intended as a variable to potentially hold a name,
-#but it's not used in any of the rules or targets
